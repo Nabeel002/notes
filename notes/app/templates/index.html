@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+<style>
+    .div{
+          display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 100vh;
+  background-color: aliceblue;
+  flex-direction: column;
+    }
+
+
+    .notes {
+  margin: 50px;
+  margin-top: 10px;
+  display: flex;
+  margin-left: 150px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.card {
+  background-color: white;
+  width: 300px;
+  margin: 20px;
+  height: 200px;
+  box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+  flex-grow: 0;
+  width: 20%;
+}
+
+.card-header {
+  background-color: rgb(31, 176, 238);
+  height: 50px;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-header h3 {
+  font-weight: 400;
+}
+
+#del {
+  cursor: pointer;
+}
+
+.card-body {
+  padding: 20px;
+  overflow: auto;
+  word-wrap: break-word;
+  height: 150px;
+}
+
+</style>
+
+<div class="div">
+<div class="card-panel">
+
+    <form method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+
+        <button class="btn" type="submit">Add A Note</button>
+    </form>
+</div>
+<div class="notes-container">
+<a class="btn" href="{% url 'notes' %}">View Your Notes</a>
+
+                
+        </div>
+</div>
+</div>
+{% endblock content %}
+    

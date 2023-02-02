@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+<style>
+    .div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 100vh;
+        background-color: aliceblue;
+        flex-direction: column;
+    }
+
+
+    .notes {
+        margin: 50px;
+        margin-top: 10px;
+        display: flex;
+        margin-left: 150px;
+        align-items: center;
+        flex-wrap: wrap;
+    }
+
+    .card {
+        background-color: white;
+        width: 300px;
+        margin: 20px;
+        height: 200px;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.4);
+        flex-grow: 0;
+    }
+
+    .card-header {
+        background-color: rgb(70, 145, 251);
+        height: 50px;
+        color: white;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .card-header h3 {
+        font-weight: 400;
+    }
+
+    #del {
+        cursor: pointer;
+    }
+
+    .card-body {
+        padding: 20px;
+        overflow: auto;
+        word-wrap: break-word;
+        height: 150px;
+    }
+
+    a{
+        color: white;
+    }
+
+
+    
+</style>
+
+<div class="div">
+   
+    <div class="notes-container">
+        <h1 class="title">Notes Section</h2>
+            <div class="notes" id="notes">
+
+                {% for object in object_list %}
+
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 style="font-size: 18px; margin: 0; line-height: unset;">Note</h3>
+                        <!-- three dot menu -->
+                        <div>
+                            <a href="{% url 'edit' object.id %}">
+
+                                Edit
+                            </a>
+                        </div>
+
+                        <div>
+                            <a href="{% url 'delete' object.id %}">
+
+                                Delete                        
+                            </a>
+</div>
+                        <div class="dropdown">
+                            <!-- three dots -->
+                            <ul class="dropbtn icons btn-right showLeft" onclick="showDropdown()">
+                                <li></li>
+                                <li></li>
+                                <li></li>
+                            </ul>
+                            <!-- menu -->
+                            <div id="myDropdown" class="dropdown-content">
+                                <a href="#home">Open</a>
+                                <a href="#about">Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        {{ object.body }}
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+    </div>
+</div>
+{% endblock content %}
